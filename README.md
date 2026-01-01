@@ -61,44 +61,7 @@ Wave-2 adjustment:
 Mail in Wave-2 if:
 - `p_wave2 > p_breakeven`
 
-## Results Summary (from report)
-### Classification metrics (Wave-1 label prediction)
-**Logistic Regression**
-- Accuracy: 0.4216  
-- Precision: 0.0687  
-- Recall: 0.8798  
-- Specificity: 0.3985  
 
-**Neural Network**
-- Accuracy: 0.4544  
-- Precision: 0.0719  
-- Recall: 0.8706  
-- Specificity: 0.4334  
-
-### Profit + ROME (Wave-2 selection logic applied)
-**Wave-2 (test-set estimate)**
-- Logistic Regression:  
-  - Messages sent: 5,686  
-  - Estimated responses: 390.6  
-  - Profit: $15,419.69  
-  - ROME: 192.33%
-- Neural Network:  
-  - Messages sent: 5,026  
-  - Estimated responses: 361.5  
-  - Profit: $14,602.58  
-  - ROME: 206.06%
-
-**Scaled to full eligible Wave-2 population (excluding prior responders)**
-- Logistic Regression:
-  - Messages sent: ~202,847
-  - Estimated responses: 13,935
-  - Profit: $550,094.52
-  - ROME: 192.33%
-- Neural Network:
-  - Messages sent: ~179,302
-  - Estimated responses: ~12,895.99
-  - Profit: $520,944.33
-  - ROME: 206.06%
 
 ### Final decision
 We chose the **logistic regression model** for deployment because it delivered **higher total profit** and remained highly competitive after adding interaction terms—while staying simpler and more interpretable.
