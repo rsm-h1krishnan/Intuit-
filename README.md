@@ -35,7 +35,9 @@ I developed and compared two primary modeling architectures to find the optimal 
 ***Technical Skills Demonstrated***
 
 • **Predictive Modeling:** Logistic Regression, Neural Networks (MLP), LASSO Regularization.
+
 • **Model Evaluation:** Gains/Lift Charts, AUC, ROME, and Profit-based Thresholding.
+
 • **Tools:** Python (pandas, sklearn, statsmodels, pyrsm).
 
 This repo contains the final **project report only** (no code/data) due to school/confidentiality constraints.
