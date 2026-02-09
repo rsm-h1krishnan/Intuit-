@@ -1,85 +1,34 @@
 # Intuit QuickBooks Upgrade Targeting (Wave-2) — Predictive Modeling Case Study
 
+# **Project Overview**
+
+This case study focuses on optimizing a direct-mail marketing campaign for **Intuit QuickBooks**. After an initial Wave-1 mailing to over 800,000 small businesses, the goal was to develop a sophisticated targeting strategy for **Wave-2**. The objective was to identify which non-responders from the first wave were most likely to upgrade to QuickBooks Version 3.0, maximizing total campaign profit while accounting for a projected 50% drop in response rates for the second wave.
+
+***Business Logic & Strategy***
+
+To ensure the campaign was data-driven and ROI-focused, I utilized a **breakeven probability framework**:
+• **Cost Dynamics:** Each mail piece cost **$1.41**, with a net revenue of **$60** per successful upgrade.
+• **Breakeven Threshold:** Targeting was only performed if a customer's predicted probability of responding exceeded **0.0235** ($P_{breakeven} = 1.41 / 60$).
+• **Wave-2 Adjustment:** Applied a conservative 50% "drop-off" multiplier to Wave-1 predicted probabilities to reflect realistic second-wave behavior.
+
+**Analytical Methodology**
+
+I developed and compared two primary modeling architectures to find the optimal balance between predictive power and business interpretability:
+• **Logistic Regression (Baseline & Refinement):** Started with a comprehensive feature set and used **LASSO regression** and **Permutation Importance** to isolate the most impactful predictors, such as purchase recency (`last`), version history (`version1`), and past order volume (`numords`).
+• **Neural Networks (Pattern Discovery):** Employed a Neural Network with an **Adam solver** and **ReLU activation** (10 nodes in a single hidden layer) to capture complex, non-linear relationships.
+• **Feature Engineering & Interaction:** Used the Neural Network to "discover" hidden interactions—specifically between software version and purchase recency (`version1:last`) and order frequency (`numords:version1`). These were then integrated back into the Logistic Regression model to enhance its performance.+2
+
+**Key Results & Impact**
+
+• **Optimal Model:** Selected the **Interaction-Adjusted Logistic Regression** for final deployment due to its superior total profit and high interpretability.
+• **Profitability:** The model successfully identified a high-value segment, leading to an estimated **$550,094 in total profit**.
+• **Efficiency:** Achieved a **192.33% Return on Marketing Expenditure (ROME)**, ensuring that marketing spend was concentrated only on the most promising leads.
+
+**Technical Skills Demonstrated**
+
+• **Predictive Modeling:** Logistic Regression, Neural Networks (MLP), LASSO Regularization.
+• **Model Evaluation:** Gains/Lift Charts, AUC, ROME, and Profit-based Thresholding.
+• **Tools:** Python (pandas, sklearn, statsmodels, pyrsm).
+
 This repo contains the final **project report only** (no code/data) due to school/confidentiality constraints.
 
-## Overview
-Intuit ran a direct-mail upgrade campaign to move small businesses to **QuickBooks v3.0**.  
-Wave-1 went to a large customer list; Wave-2 should target **only the most likely responders** among customers who **did not respond in Wave-1**, with the goal of maximizing profit.
-
-**Goal:** Predict upgrade likelihood and produce a Wave-2 targeting strategy that balances response probability vs. mailing cost.
-
-## Business Context (What we’re optimizing)
-- **Mailing cost:** $1.41 per customer
-- **Margin per upgrade (excluding mailing cost):** $60
-- **Wave-2 expected response drop:** assume Wave-2 response probability is **50% of predicted Wave-1 probability** (standard practice in the case)
-
-We used a breakeven framework to decide who should be mailed in Wave-2.
-
-## Data (high level)
-The dataset represents small business customers who received the Wave-1 mailing, including:
-- Customer/order history (e.g., number of orders, total spend, recency)
-- Product ownership & upgrade history
-- ZIP bin features
-- Binary response label for Wave-1
-
-> Note: The dataset is course-provided and not included here.
-
-## Modeling Approach
-### 1) Logistic Regression (baseline + feature selection)
-We started with a full model and iteratively removed non-contributing variables. We also used:
-- **LASSO** to validate feature importance
-- **Permutation importance**
-- **Correlation checks** to address multicollinearity
-
-Final core predictors used:
-- `zip_bins`, `numords`, `dollars`, `last`, `upgraded`, `owntaxprod`, `version1`
-
-### 2) Neural Network (to capture non-linear patterns)
-We tested multiple single hidden-layer configurations. Early experiments showed either no lift or overfitting.
-Switching to:
-- **Adam solver + ReLU activation**
-and tuning hidden layer size led to a stable model. The best configuration used a hidden layer size of **(10,)**.
-
-### 3) “Best of both” — discovering interactions
-We used the neural network to surface interactions not captured by the base logistic model, then added these into logistic regression:
-- `version1:last`
-- `numords:version1`
-
-After adding these terms, logistic regression performance became very close to the neural model, with the added benefit of interpretability.
-
-## Targeting Rule (Profit-based)
-We mailed customers when the adjusted probability exceeded the breakeven threshold.
-
-Breakeven probability:
-\[
-p_{breakeven} = \frac{1.41}{60} \approx 0.0235
-\]
-
-Wave-2 adjustment:
-- `p_wave2 = 0.5 × p_predicted`
-
-Mail in Wave-2 if:
-- `p_wave2 > p_breakeven`
-
-
-
-### Final decision
-We chose the **logistic regression model** for deployment because it delivered **higher total profit** and remained highly competitive after adding interaction terms—while staying simpler and more interpretable.
-
-## What we learned
-- Past purchase behavior and recency strongly relate to upgrade likelihood.
-- Neural networks helped uncover interaction effects that improved a traditional model.
-- Profit-based targeting (breakeven threshold + response drop adjustment) is essential for realistic campaign decisions.
-
-## Contents of this repo
-- `report/` — Final project report (PDF)
-
-## Notes on confidentiality
-- Code, data, and any course-only resources are intentionally excluded.
-- This repo is meant to showcase the **business framing, modeling approach, and results**.
-
-
-
-
-## License
-For educational/portfolio use only. Please do not reuse course-provided materials in ways that violate your institution’s academic policies.
