@@ -1,4 +1,4 @@
-# Intuit QuickBooks Upgrade Targeting (Wave-2) — Predictive Modeling Case Study
+# Intuit QuickBooks — Predictive Modeling Case Study
 
 # **Project Overview**
 
