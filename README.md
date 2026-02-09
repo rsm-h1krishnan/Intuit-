@@ -14,7 +14,7 @@ To ensure the campaign was data-driven and ROI-focused, I utilized a **breakeven
 
 • **Wave-2 Adjustment:** Applied a conservative 50% "drop-off" multiplier to Wave-1 predicted probabilities to reflect realistic second-wave behavior.
 
-**Analytical Methodology**
+***Analytical Methodology***
 
 I developed and compared two primary modeling architectures to find the optimal balance between predictive power and business interpretability:
 
@@ -22,9 +22,9 @@ I developed and compared two primary modeling architectures to find the optimal 
 
 • **Neural Networks (Pattern Discovery):** Employed a Neural Network with an **Adam solver** and **ReLU activation** (10 nodes in a single hidden layer) to capture complex, non-linear relationships.
 
-• **Feature Engineering & Interaction:** Used the Neural Network to "discover" hidden interactions—specifically between software version and purchase recency (`version1:last`) and order frequency (`numords:version1`). These were then integrated back into the Logistic Regression model to enhance its performance.+2
+• **Feature Engineering & Interaction:** Used the Neural Network to "discover" hidden interactions—specifically between software version and purchase recency (`version1:last`) and order frequency (`numords:version1`). These were then integrated back into the Logistic Regression model to enhance its performance.
 
-**Key Results & Impact**
+***Key Results & Impact***
 
 • **Optimal Model:** Selected the **Interaction-Adjusted Logistic Regression** for final deployment due to its superior total profit and high interpretability.
 
@@ -32,7 +32,7 @@ I developed and compared two primary modeling architectures to find the optimal 
 
 • **Efficiency:** Achieved a **192.33% Return on Marketing Expenditure (ROME)**, ensuring that marketing spend was concentrated only on the most promising leads.
 
-**Technical Skills Demonstrated**
+***Technical Skills Demonstrated***
 
 • **Predictive Modeling:** Logistic Regression, Neural Networks (MLP), LASSO Regularization.
 • **Model Evaluation:** Gains/Lift Charts, AUC, ROME, and Profit-based Thresholding.
